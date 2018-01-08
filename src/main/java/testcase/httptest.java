@@ -41,44 +41,42 @@ public class httptest {
 
     public static String PostRequests(String url, Map params, Map header) {
         StringBuffer response = new StringBuffer();
-//        // 创建默认的httpClient实例.
-//        CloseableHttpClient httpclient = HttpClients.createDefault();
-//        // 创建httppost
-//        HttpPost httppost = new HttpPost("http://localhost:8080/myDemo/Ajax/serivceJ.action");
-//        // 创建参数队列
-//        List formparams = new ArrayList();
-//        formparams.add(new BasicNameValuePair("type", "house"));
-//        UrlEncodedFormEntity uefEntity;
-//        try {
-//            uefEntity = new UrlEncodedFormEntity(formparams, "UTF-8");
-//            httppost.setEntity(uefEntity);
-//            System.out.println("executing request " + httppost.getURI());
-//            CloseableHttpResponse response = httpclient.execute(httppost);
-//            try {
-//                HttpEntity entity = response.getEntity();
-//                if (entity != null) {
-//                    System.out.println("--------------------------------------");
-//                    System.out.println("Response content: " + EntityUtils.toString(entity, "UTF-8"));
-//                    System.out.println("--------------------------------------");
-//                }
-//            } finally {
-//                response.close();
-//            }
-//        } catch (ClientProtocolException e) {
-//            e.printStackTrace();
-//        } catch (UnsupportedEncodingException e1) {
-//            e1.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            // 关闭连接,释放资源
-//            try {
-//                httpclient.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
+//        HttpClient client = new HttpClient();
+//        PostMethod method=new PostMethod(url);
+//        int i;
+////封装HTTP请求头
+//        if(header != null && header.size()>0){
+//            Set key = header.keySet();
+//            for (Iterator it = key.iterator(); it.hasNext();) {
+//                String s = (String) it.next();
+//                method.addRequestHeader(s,header.get(s));
 //            }
 //        }
-
+////设置Http Post数据
+//        if (params != null) {
+//            NameValuePair[] postData = new NameValuePair[params.size()];
+//            i=0;
+//            for (Map.Entry entry : params.entrySet()) {
+//                postData[i] = new NameValuePair(entry.getKey(), entry.getValue());
+//                i++;
+//            }
+//            method.addParameters(postData);
+//        }
+//        try {
+//            client.executeMethod(method);
+//            if (method.getStatusCode() == HttpStatus.SC_OK) {
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(method.getResponseBodyAsStream()));
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    response.append(line);
+//                }
+//                reader.close();
+//            }
+//        } catch (IOException e) {
+//            System.out.println("执行HTTP Post请求" + url + "时，发生异常！"+e);
+//        } finally {
+//            method.releaseConnection();
+//        }
         return response.toString();
     }
 
